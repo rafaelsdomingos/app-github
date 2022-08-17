@@ -1,33 +1,49 @@
 import React from "react";
+import useGithub from "../../hooks/gitnub-hooks";
 import * as S from './styled'
 
 const Profile = () => {
+
+    const { githubState } = useGithub;
+
     return (  
         <S.Wrapper>
-            <img src="https://avatars.githubusercontent.com/u/96540309?v=4" alt="User Avatar" />
+
+            <S.WrapperImage src="https://avatars.githubusercontent.com/u/96540309?v=4" alt="User Avatar" />
             
-            <div>
+            <S.WrapperInfoUsers>
                 <div>
-                    <h1>Rafael Domingos</h1>
-                    <h3>Username: </h3>
-                    <span>rafaelsdomingos</span>
+                    <h1>{githubState.user.name}</h1>
+                    
+                    <S.WrapperUsername>
+
+                        <h3>Username: </h3>
+                        <a href={githubState.user.html_url} target="_blank" rel="noreferrer">{githubState.user.login}</a>
+
+                    </S.WrapperUsername>
+
                 </div>
 
-                <S.Wrapper>
+                <S.WrapperStatusCount>
                     <div>
                         <h4>Followers</h4>
-                        <span>5</span>
+                        <span>{githubState.user.followers} </span>
                     </div>
                     <div>
-                        <h4>Starreds</h4>
-                        <span>5</span>
+                        <h4>Gists</h4>
+                        <span>{githubState.user.public_gists} </span>
                     </div>
                     <div>
                         <h4>Followings</h4>
-                        <span>5</span>
+                        <span>{githubState.user.followings} </span>
                     </div>
-                </S.Wrapper>
-            </div>
+
+                    <div>
+                        <h4>Repos</h4>
+                        <span>{githubState.user.followings} </span>
+                    </div>
+                </S.WrapperStatusCount>
+            </S.WrapperInfoUsers>
 
 
         </S.Wrapper>
